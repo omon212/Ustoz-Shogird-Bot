@@ -26,7 +26,7 @@ from Keyboards.default import turlari
 
 
 class VacansyStates(StatesGroup):
-    naming = State()
+    name= State()
     age = State()
     tex = State()
     tel = State()
@@ -58,14 +58,14 @@ Har biriga javob bering.
 Oxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va arizangiz Adminga yuboriladi.
 ''')
     await message.answer('<b>Ism Familyangizni kiriting !</b>')
-    await VacansyStates.naming.set()
+    await VacansyStates.name.set()
 
 
-@dp.message_handler(state=VacansyStates.naming, content_types=types.ContentType.TEXT)
+@dp.message_handler(state=VacansyStates.name, content_types=types.ContentType.TEXT)
 async def naming_writer(message: types.Message, state=FSMContext):
     ismi = message.text
     DataBase[str(message.from_user.id)] = [ismi]
-    await message.answer('Yoshingizni kirting!')
+    await message.answer('Iltimos Yoshingizni kirting!')
     await state.finish()
     await VacansyStates.age.set()
 
